@@ -1,22 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa con Leaflet</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-</head>
-<body>
-     <!-- Cartel con imagen de fondo -->
-     <div class="cartel">
-        <h1>Visor de Mapa</h1>
-    </div>
-    <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <!-- Enlace al archivo de script -->
-    <script src="script.js"></script>
+    <!-- Icons para el panel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/noerw/leaflet-sidebar-v2/v3.2.3/css/leaflet-sidebar.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.min.css"
+        integrity="sha512-yP7tTm3rX87fOK3iDh9K2RJTHsq6BfGZ8sFqRMIfsmmZVakOw483WyOKlRWVLjHCHEDIcEkp/U+cO3TnZ8oiuw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdn.rawgit.com/jjimenezshaw/Leaflet.Control.Layers.Tree/v1.1.0/L.Control.Layers.Tree.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/map-control-layers.css" />
+    <link rel="stylesheet" href="css/map-sidebar.css" />
+
+</head>
+
+<body>
+    <!-- Side Bar -->
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+
+        <!-- Opciones Pricipales  -->
+        <div class="leaflet-sidebar-tabs">
+            <ul role="tablist">
+                <li>
+                    <a id="btn-capas" href="#capas" role="tab"><i class="fa fa-layer-group"></i></a>
+                </li>
+                <li>
+                    <a id="btn-bases" href="#bases" role="tab"><i class="fa fa-map"></i></a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contenido de Opciones-->
+        <div class="leaflet-sidebar-content">
+
+            <!-- Label de Opciones Seleccionadas -->
+            <div class="leaflet-sidebar-pane" id="panel-capas">
+                <h1 class="leaflet-sidebar-header">
+                    Capas
+                    <span class="leaflet-sidebar-close">
+                        <i class="fa fa-caret-right"></i>
+                    </span>
+                </h1>
+            </div>
+
+            <!-- Opcion Tipo de Mapa -->
+            <div class="leaflet-sidebar-pane" id="panel-bases">
+                <h1 class="leaflet-sidebar-header">
+                    Base
+                    <span class="leaflet-sidebar-close">
+                        <i class="fa fa-caret-right"></i>
+                    </span>
+                </h1>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+        integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.rawgit.com/calvinmetcalf/leaflet-ajax/gh-pages/dist/leaflet.ajax.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/noerw/leaflet-sidebar-v2/v3.2.3/js/leaflet-sidebar.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.min.js"
+        integrity="sha512-cdomNfv1IRJE1v+2/irZdkNU09XwtYP2bQ1qK1ybWF/vz+P3GTMZtrXwlxTU41ExwoWGvEf0njIak5l/ZQaIMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+        src="https://cdn.rawgit.com/jjimenezshaw/Leaflet.Control.Layers.Tree/v1.1.0/L.Control.Layers.Tree.js"></script>
+    <script src="https://cdn.rawgit.com/yigityuce/Leaflet.Control.Custom/master/Leaflet.Control.Custom.js"></script>
+    <script src="https://cdn.rawgit.com/ptma/Leaflet.Measure/master/src/leaflet.measure.js"></script>
+    <script src="https://unpkg.com/georaster"></script>
+    <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/leaflet-triangle-marker"></script>
+
+    <script src="js/map-sidebar.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>

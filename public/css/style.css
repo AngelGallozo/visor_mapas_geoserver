@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+html {
+	font-family: roboto;
+}
+
+#map {
+	height: 100%;
+}
+
+.map-container {
+	position: relative; /* Asegúrate de que el contenedor sea relativo */
+    flex: 1; /* Permite que ocupe todo el espacio disponible */
+}
+
+body {
+	font-family: 'roboto';
+    background: #ebf3e8;
+    height: 100vh;
+    margin: 0; /* Asegúrate de que no haya margen en el body */
+    display: flex; /* Cambia esto a flex para un mejor control del layout */
+}
+
+
+/* Estilo para el sidebar */
+.leaflet-sidebar-tabs{
+	right: 0;
+	background-color: rgba(7, 6, 6, 0.8)
+}
+
+.leaflet-sidebar-tabs>ul>li>a {
+	color: white;
+}
+
+.leaflet-sidebar-tabs>li.active, 
+.leaflet-sidebar-tabs>ul>li.active {
+    background-color: rgb(38, 175, 175);
+}
+
+.leaflet-sidebar-tabs>ul>li>a:hover {
+	color: black;
+}
+
+.show-panel{
+	display: block;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.show-content{
+	width: auto;
+}
+
+.leaflet-sidebar-header{
+    background-color: rgb(38, 175, 175);
+}
+
+.leaflet-sidebar-content{
+    background-color: unset;
+}
+
+#sidebar {
+	margin: 5px;
+    position: absolute; /* Posiciona el sidebar absolutamente */
+    top: 0; /* Ajusta para que comience desde la parte superior */
+    right: 0; /* Coloca el sidebar a la derecha */
+    width: 100%; /* Ancho inicial del sidebar */
+    background-color: #0a0909cf;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra para el sidebar */
+    z-index: 1000; /* Asegúrate de que esté por encima del mapa */
+    transition: width 0.4s ease; /* Transición para el cambio de ancho */
+}
+
+/* Estilo para el sidebar colapsado */
+#sidebar.collapsed {
+    width: 40px; /* Colapsar el sidebar estableciendo el ancho a 0 */
+    overflow: hidden; /* Oculta el contenido que no quepa */
+}
+
+
+
